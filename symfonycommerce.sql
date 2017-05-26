@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 26 Mai 2017 à 14:09
+-- Généré le :  Ven 26 Mai 2017 à 14:19
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -61,8 +61,9 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`id`, `libelle`, `reference`, `prixAchat`, `prixVente`, `tva`, `idCategorie`, `isInStock`) VALUES
-(11, 'uoghijo', 6354, 545, 54, 54, 3, 1),
-(10, 'iuighj', 657454, 57454, 5454, 545, 2, 1);
+(14, 'Fraise', 331, 1.3, 2, 5, 2, 1),
+(13, 'Haricots', 878, 5.65, 6.3, 7.5, 3, 1),
+(12, 'banane', 565, 2.5, 3, 10.1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -109,8 +110,10 @@ INSERT INTO `stock` (`id`, `refProduit`, `nbProduit`) VALUES
 (9, 6565, 0),
 (10, 575, 0),
 (11, 545, 0),
+(17, 878, 59),
 (16, 6354, 500),
-(15, 657454, 2);
+(15, 657454, 2),
+(18, 331, 32);
 
 -- --------------------------------------------------------
 
@@ -131,7 +134,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `idRole`, `pseudo`, `password`, `createdDate`) VALUES
-(8, 3, 'mimir02', '63a9f0ea7bb98050796b649e85481845', '2017-05-22 21:19:55'),
+(8, 3, 'admin', '63a9f0ea7bb98050796b649e85481845', '2017-05-22 21:19:55'),
 (9, 2, 'magasinier', '32529ae8e130e6bbde10a9ebf8599e19', '2017-05-23 16:49:38'),
 (10, 1, 'responsable', '636d61cf9094a62a81836f3737d9c0da', '2017-05-23 16:50:07');
 
@@ -183,7 +186,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT pour la table `role`
 --
@@ -193,7 +196,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT pour la table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
