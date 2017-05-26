@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Commerce{% endblock %}</title>
+
+        <link rel="stylesheet" href="{{ asset('bundles/adminlte/bootstrap/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/font-awesome/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/ionicons/css/ionicons.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/adminlte/dist/css/AdminLTE.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/adminlte/dist/css/skins/_all-skins.min.css') }}" />
+
+        <style type="text/css">
+            .table > thead > tr > th,
+            .table > tbody > tr > td {
+                vertical-align: middle;
+            }
+        </style>
+
+        {% block stylesheets %}{% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <script type="application/javascript" src="{{ asset('bundles/adminlte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+        <script type="application/javascript" src="{{ asset('bundles/adminlte/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script type="application/javascript" src="{{ asset('bundles/adminlte/dist/js/app.min.js') }}"></script>
+
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    {% block body %}
+    {% endblock %}
+</html>

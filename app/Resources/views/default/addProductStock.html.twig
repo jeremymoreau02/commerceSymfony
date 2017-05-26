@@ -1,0 +1,98 @@
+{% extends 'loggedpage.html.twig' %}
+
+{% block content %}
+    <section class="content-header">
+        <h1>
+            Ajouter un produit au stock
+            <small>Formulaire de création</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/listUsers">
+                    <i class="fa fa-dashboard"></i>
+                    Stock
+                </a>
+            </li>
+            <li class="active">
+                <i class="ion ion-ios-game-controller-b"></i>
+                Ajouter un produit
+            </li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Formulaire</h3>
+                    </div>
+                    <div class="box-body table-responsive no-padding ">
+                            <div class="form-group col-sm-8">
+                                <label >Catégorie du produit à ajouter</label>
+                                <select class="form-control col-sm-1" name="cat" id="cat" onChange="changeCat()">
+                                        {% for cat in categories %}
+                                                <option>{{ cat }}</option>
+                                        {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-8">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>libellé</th>
+                                            <th>référence</th>
+                                            <th>catégorie</th>
+                                            <th>prix d'achat</th>
+                                            <th>prix de vente</th>
+                                            <th>tva</th>
+                                            <th>Ajouter</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for produit in produits %}
+                                            <tr>
+                                                <td>{{ produit.libelle }}</td>
+                                                <td>{{ produit.reference }}</td>
+                                                <td class="tableCat">{{ produit.categorie }}</td>
+                                                <td>{{ produit.prixAchat }}</td>
+                                                <td>{{ produit.prixVente }}</td>
+                                                <td>{{ produit.tva }}</td>
+                                                <td>
+                                                    <a href="/addStock/{{ produit.reference }}" class="btn btn-flat btn-success" title="Play">
+                                                        Ajouter
+                                                        <i class="ion ion-edit"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                       
+
+                        {% for error in errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="box-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        function changeCat(){
+            var tablesCat = document.getElementsByClassName('tableCat');
+            for(var i=0; i<tablesCat.length; i++){
+                if(tablesCat[i].innerHTML !== document.getElementById('cat').value){
+                    tablesCat[i].parentElement.style.display= 'none';
+                }else{
+                    tablesCat[i].parentElement.style.display= 'table-row';
+                }
+            }
+        }
+    </script>
+{% endblock %}

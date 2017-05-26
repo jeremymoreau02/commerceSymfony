@@ -1,0 +1,89 @@
+{% extends 'loggedpage.html.twig' %}
+
+{% block content %}
+    <section class="content-header">
+        <h1>
+            Créer un nouvel utilisateur
+            <small>Formulaire de création</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/listUsers">
+                    <i class="fa fa-dashboard"></i>
+                    Utilisateurs
+                </a>
+            </li>
+            <li class="active">
+                <i class="ion ion-ios-game-controller-b"></i>
+                Nouvel utilisateur
+            </li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                <form {% if userToUpdate is defined %} action="/updateUser/{{ userToUpdate.id }}" {% else %} action="/newUser" {% endif %} method="post">
+                    <div class="box-header">
+                        <h3 class="box-title">Formulaire</h3>
+                    </div>
+                    <div class="box-body table-responsive no-padding ">
+                        
+                            <div class="form-group">
+                                <label for="username" class="col-sm-2 control-label">Pseudo</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="username" class="form-control" name="username" placeholder="Pseudo" {% if userToUpdate is defined %} value="{{ userToUpdate.pseudo }}" {% endif %}/>
+                                </div>
+                            </div>
+                            <br/><br/><br/>
+                            <div class="form-group">
+                                <label for="pwd" class="col-sm-2 control-label">Mot de passe</label>
+                                <div class="col-sm-8">
+                                    <input type="password" id="pwd" class="form-control" name="password" placeholder="Mot de passe" />
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="form-group">
+                                <label for="pwdv" class="col-sm-2 control-label">Vérification</label>
+                                <div class="col-sm-8">
+                                    <input type="password" id="pwdv" class="form-control" name="password2" placeholder="Vérification du mot de passe" />
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="form-group col-sm-8">
+                                <label >Selectionner le poste</label>
+                                <select class="form-control col-sm-1" name="role">
+                                    {% if userToUpdate is defined %}
+                                        {% for role in roles %}
+                                            {% if role == userToUpdate.role %}
+                                                <option>{{ role }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% for role in roles %}
+                                            {% if role != userToUpdate.role %}
+                                                <option>{{ role }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for role in roles %}
+                                                <option>{{ role }}</option>
+                                        {% endfor %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                       
+
+                        {% for error in errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="col-sm-2 btn btn-info pull-right">Register</button>
+                    </div>
+                     </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

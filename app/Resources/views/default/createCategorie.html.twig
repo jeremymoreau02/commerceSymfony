@@ -1,0 +1,53 @@
+{% extends 'loggedpage.html.twig' %}
+
+{% block content %}
+    <section class="content-header">
+        <h1>
+            Créer une nouvelle catégorie
+            <small>Formulaire de création</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/listUsers">
+                    <i class="fa fa-dashboard"></i>
+                    Catégories
+                </a>
+            </li>
+            <li class="active">
+                <i class="ion ion-ios-game-controller-b"></i>
+                Nouvelle catégorie
+            </li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                <form {% if categorieToUpdate is defined %} action="/updateCategorie/{{ categorieToUpdate.id }}" {% else %} action="/newCategorie" {% endif %} method="post">
+                    <div class="box-header">
+                        <h3 class="box-title">Formulaire</h3>
+                    </div>
+                    <div class="box-body table-responsive no-padding ">
+                        
+                            <div class="form-group">
+                                <label for="nom" class="col-sm-2 control-label">Nom</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="nom" class="form-control" name="nom" placeholder="Nom" {% if categorieToUpdate is defined %} value="{{ categorieToUpdate.nom }}" {% endif %}/>
+                                </div>
+                            </div>
+                       
+
+                        {% for error in errors %}
+                            <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="col-sm-2 btn btn-info pull-right">Register</button>
+                    </div>
+                     </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

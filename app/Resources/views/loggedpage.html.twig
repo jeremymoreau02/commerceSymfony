@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <header class="main-header">
+                <a href="/" class="logo">
+                    <span class="logo-mini">C</span>
+                    <span class="logo-lg">Commerce</span>
+                </a>
+
+                <nav class="navbar navbar-static-top">
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle Navigation</span>
+                    </a>
+
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="{{ asset('bundles/adminlte/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image" />
+                                    <span class="hidden-xs">{{ user.name }}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="user-header">
+                                        <img src="{{ asset('bundles/adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image" />
+
+                                        <p>{{ user.name }}</p>
+                                    </li>
+
+                                    <li class="user-body">
+                                    </li>
+
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="/profile" class="btn btn-default btn-flat">Profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <aside class="main-sidebar">
+                <ul class="sidebar-menu" data-widget="tree">
+                    {% for section in sections %}
+
+                        {% for menuitem in section.links %}
+                            {% if menuitem[user.role] %}
+                                <li {% if menuitem.active %} class="active treeview" {% else %} class="treeview" {% endif %}>
+                                    <a href="{{ menuitem.href }}">
+                                        <i class="{{ menuitem.icon }}"></i>
+                                        <span >{{ menuitem.title }}</span>
+                                    </a>
+                                    <ul >
+                                        {% for subsection in menuitem.subsections %}
+                                        
+                                            {% for subitem in subsection.links %}
+                                                {% if subitem[user.role] %}
+                                                    <li {% if subitem.active %} class="active" {% endif %}>
+                                                        <a href="{{ subitem.href }}">
+                                                            <i class="{{ subitem.icon }}"></i>
+                                                            <span>{{ subitem.title }}</span>
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </aside>
+
+            <div class="content-wrapper">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </body>
+{%endblock %}
